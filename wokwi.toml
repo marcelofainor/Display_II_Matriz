@@ -1,0 +1,4 @@
+[wokwi]
+version = 1
+firmware = 'build/embarcatech-wls-uart-i2c.uf2'
+elf = 'build/embarcatech-wls-uart-i2c.elf'
