@@ -56,7 +56,7 @@ Para garantir o funcionamento correto, o projeto deve atender aos seguintes requ
 6. **Código Bem Estruturado e Comentado**
    - O código deve ser organizado e conter **comentários explicativos**
 
-## Link para o vídeo de demonstração https://youtube.com/shorts/LqcfFRF_hqE?si=-45nsgZFN4oMPsfo
+## Link para o vídeo de demonstração https://youtu.be/yTT_R3fGjiY?si=pcrgpi024hft0hzS
 
 ## Como Executar o Projeto
 1. **Clone este repositório:**
