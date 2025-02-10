@@ -28,7 +28,6 @@
 #define MATRIX_WIDTH 5       
 #define MATRIX_HEIGHT 5      
 #define ENDERECO 0x3C        
-#define BRIGHTNESS 0.1  // Ajuste entre 0.0 (desligado) e 1.0 (máximo)
 
 // Estados e Configurações Globais
 static PIO ws2812_pio = pio0;            // PIO usado para controle da matriz WS2812
@@ -108,11 +107,12 @@ void put_pixel(uint32_t pixel_grb) {
 }
 
 uint32_t rgb_to_grb(uint8_t r, uint8_t g, uint8_t b) {
-    r = (uint8_t)(r * BRIGHTNESS);
-    g = (uint8_t)(g * BRIGHTNESS);
-    b = (uint8_t)(b * BRIGHTNESS);
+    float brightness_factor = 0.1;  // 10% do brilho máximo
+    uint8_t new_r = r * brightness_factor;
+    uint8_t new_g = g * brightness_factor;
+    uint8_t new_b = b * brightness_factor;
     
-    return (g << 16) | (r << 8) | b;
+    return (new_g << 16) | (new_r << 8) | new_b;
 }
 
 void clear_leds() {
@@ -125,10 +125,8 @@ void clear_leds() {
 void display_number(uint8_t number) {
     if (number > 9) return;
 
-    float brightness_factor = 0.1;  // Ajuste a intensidade do brilho aqui
-
-    uint32_t on_color = rgb_to_grb(19 * brightness_factor, 96 * brightness_factor, 48 * brightness_factor);  // Verde mais fraco
-    uint32_t off_color = rgb_to_grb(0, 0, 0);  // Apagado
+    uint32_t on_color = rgb_to_grb(19, 96, 48);  // Verde
+    uint32_t off_color = rgb_to_grb(0, 0, 0);    // Apagado
     
     // Buffer para armazenar o estado de todos os LEDs
     uint32_t led_buffer[NUM_PIXELS];
